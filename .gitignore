@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+*.sqlite3
+*.json
+!*/.gitkeep
+static/
+!*/static/

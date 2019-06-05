@@ -1,0 +1,4 @@
+django
+django-settings-export
+django-cors-headers
+chardet
