@@ -5,9 +5,18 @@
 
 {% block head_css %}
     {{ block.super }}
+    <style type="text/css">
+        .bg-success{
+            color: #fa1;
+            background-color: #59217d;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
     {{ block.super }}
     <h1>首页</h1>
+    <section id="example">
+        <article id="article-region"></article>
+    </section>
 {% endblock %}

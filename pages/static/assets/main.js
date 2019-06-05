@@ -41,7 +41,7 @@ define(function() {
             // jQuery UI Touch Punch
             'jquery.ui.touch-punch': 'libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min',
             // underscore.js
-            // 'underscore': 'libs/underscore.js/1.9.1/underscore-min',
+            'underscore': 'libs/underscore.js/1.9.1/underscore-min',
             // Lodash
             'lodash': 'libs/lodash.js/4.17.11/lodash.min',
             // backbone.js
@@ -50,6 +50,10 @@ define(function() {
             'backbone.radio': 'libs/backbone.radio/2.0.0/backbone.radio.min',
             // MarionetteJS (Backbone.Marionette)
             'backbone.marionette': 'libs/backbone.marionette/4.1.2/backbone.marionette.min',
+            // Handlebars 
+            'handlebars': 'libs/handlebars.js/4.1.2/handlebars.min',
+            // requirejs-handlebars
+            'hbars': 'libs/requirejs-handlebars/0.0.2/hbars.min',
             // require.js
             'require': 'libs/require.js/2.3.6/require.min',
             // require.js-text
@@ -71,6 +75,8 @@ define(function() {
                 'css': 'libs/require-css/0.1.10/css.min',
                 // 将 lodash 伪装成 underscore
                 'underscore': 'lodash',
+                // 为 handlebars 取别名 Handlebars
+                'Handlebars': 'handlebars',
                 // jquery-ui
                 'jquery-ui/data': 'jquery.ui',
                 'jquery-ui/disable-selection': 'jquery.ui',
@@ -123,7 +129,11 @@ define(function() {
         // 防止加载失败
         waitSeconds: 0,
         // 控制缓存
-        urlArgs: AppUtil.debug ? 'debug=' + Math.random() : ''
+        urlArgs: AppUtil.debug ? 'debug=' + Math.random() : '',
+        hbars: {
+            extension: '.html',
+            compileOptions: {}
+        }
     });
     // 全局调用jquery
     require(['jquery'], function($) {
