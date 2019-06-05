@@ -1,6 +1,6 @@
 define([
-    'require', 'lodash', 'jquery', 'backbone', 'backbone.radio', 'backbone.marionette'
-], function(require, _, $, Backbone, Radio, Marionette) {
+    'require', 'lodash', 'jquery', 'backbone', 'backbone.radio', 'backbone.marionette', 'handlebars'
+], function(require, _, $, Backbone, Radio, Marionette, Handlebars) {
     // 设置模板渲染
     Marionette.View.setRenderer(function(template, data) {
         return Handlebars.compile(template)(data);
@@ -10,21 +10,11 @@ define([
         tagName: 'div',
         templateContext: {
             isDr: function() {
-                debugger;
                 return (this.degree) === 'phd';
             },
             fullName: function() {
-                debugger;
                 return this.isDr() ? "无名氏" : this.name;
             }
-        },
-        render: function() {
-            var self = this;
-            require(['hbars!assets/templates/index/demo'], function (template) {
-                self.template = template;
-                self.$el.html(self.template(self.model.attributes));
-            });
-            return self;
         },
         defaults: {
             name: 'python'
@@ -32,6 +22,13 @@ define([
         className: 'bg-success',
         checkOption: function() {
             console.log(this.getOption('foo'));
+        },
+        prepareRender: function() {
+            var self = this;
+            require(['text!assets/templates/index/demo.html'], function (template) {
+                self.template = template;
+                self.render();
+            });
         },
         initialize: function() {
             // foo --> onFoo
@@ -54,7 +51,7 @@ define([
     // 视图方法调用
     view.checkOption();
     // 渲染视图
-    view.render();
+    view.prepareRender();
     // 将渲染后的内容添加到页面上
     $('#article-region').empty().append(view.$el);
 });
