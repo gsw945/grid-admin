@@ -8,13 +8,16 @@ define([
     // 视图继承
     var View = Marionette.View.extend({
         tagName: 'div',
-        templateContext: {
-            isDr: function() {
-                return (this.degree) === 'phd';
-            },
-            fullName: function() {
-                return this.isDr() ? "无名氏" : this.name;
-            }
+        templateContext: function() {
+            var degree = this.getOption('degree');
+            return {
+                isDr: function() {
+                    return (degree === 'phd');
+                },
+                fullName: function() {
+                    return this.isDr() ? this.name : '无名氏';
+                }
+            };
         },
         defaults: {
             name: 'python'
@@ -45,7 +48,7 @@ define([
     // 视图
     var view = new View({
         foo: 'some text',
-        degree: 'phd',
+        degree: 'master',
         model: model
     });
     // 视图方法调用
